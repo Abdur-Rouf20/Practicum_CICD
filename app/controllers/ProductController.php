@@ -1,0 +1,2 @@
+<?php
+// Placeholder: ProductController.php
