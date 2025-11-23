@@ -1,5 +1,6 @@
 <div class="sidebar">
     <h2>Admin Panel</h2>
+    <li><a href="categories.php">Categories</a></li>
 
     <a href="dashboard.php"><i class="fa fa-home"></i> Dashboard</a>
     <a href="products.php"><i class="fa fa-box"></i> Products</a>

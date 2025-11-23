@@ -121,3 +121,24 @@ if (searchInput) {
 document.addEventListener("DOMContentLoaded", () => {
     loadCart();
 });
+
+function confirmDelete() {
+    return confirm("Are you sure you want to delete this category?");
+}
+function generateSlug(text) {
+    return text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const nameField = document.querySelector('#categoryName');
+    const slugField = document.querySelector('#categorySlug');
+
+    if (nameField && slugField) {
+        nameField.addEventListener('input', () => {
+            slugField.value = generateSlug(nameField.value);
+        });
+    }
+});
