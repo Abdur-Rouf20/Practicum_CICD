@@ -7,7 +7,7 @@
 </div> <!-- Container end -->
 
 <footer class="footer">
-    <p>© <?php echo date("Y"); ?> ElectroShop. All rights reserved.</p>
+    <p>© <?php echo date("Y"); ?> NextGen Electronics. All rights reserved by Abdur Rouf.</p>
 </footer>
 
 </body>

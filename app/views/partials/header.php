@@ -1,4 +1,4 @@
-<!-- nav </nav> 
+ </nav> 
  <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 <nav>
 </header>
 <main>
--->
+
 
 <?php
 if (session_status() === PHP_SESSION_NONE) {
@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo isset($title) ? $title : "Electronics Shop"; ?></title>
+    <title><?php echo isset($title) ? $title : "NextGen Electronics"; ?></title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/main.css">
@@ -40,7 +40,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="container navbar">
 
         <div class="logo">
-            <a href="/index.php">ElectroShop</a>
+            <a href="/index.php">NextGen Electronics</a>
         </div>
 
         <ul>
