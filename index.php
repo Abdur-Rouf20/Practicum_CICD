@@ -4,7 +4,7 @@ require_once "app/helpers/auth.php";
 ?>
 
 <?php include "app/views/partials/header.php"; ?>
-<?php include "admin/admin_sidebar.php"; ?>
+
 <div class="container mt-5">
     <div class="row justify-content-center text-center">
         <div class="col-md-8">
@@ -15,7 +15,7 @@ require_once "app/helpers/auth.php";
                 Use the admin login to manage categories, products, and users.
             </p>
 
-            <a href="login.php" class="btn btn-primary btn-lg mt-3">Admin Login</a>
+            <a href="/admin/login.php" class="btn btn-primary btn-lg mt-3">Admin Login</a>
         </div>
     </div>
 </div>
