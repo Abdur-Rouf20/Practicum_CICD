@@ -2,14 +2,6 @@
 session_start();
 require_once "app/helpers/auth.php";
 ?>
-
-<?php
-require_once "config/db.php";
-require_once "app/core/Route.php";
-require_once "routes/web.php";
-
-Route::dispatch();
-
 <?php include "app/views/partials/header.php"; ?>
 
 <div class="container mt-5">
