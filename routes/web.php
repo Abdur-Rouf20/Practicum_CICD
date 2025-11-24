@@ -1,13 +1,25 @@
-// AUTH PAGE
-$router->get('/auth', function() { include 'views/auth/auth.php'; });
+<?php
 
-// AUTH CONTROLLER
-$router->post('/auth/login', function() use ($db) {
-    require 'controllers/AuthController.php';
-    (new AuthController($db))->login();
-});
+Route::get('/', 'HomeController@index');
+Route::get('/category', 'HomeController@category');
+Route::get('/product', 'HomeController@product');
 
-$router->get('/auth/logout', function() use ($db) {
-    require 'controllers/AuthController.php';
-    (new AuthController($db))->logout();
-});
+Route::get('/cart', 'CartController@index');
+Route::post('/cart/add', 'CartController@add');
+Route::get('/cart/remove', 'CartController@remove');
+Route::get('/cart/clear', 'CartController@clear');
+
+// AUTH
+Route::get('/login', 'AuthController@loginPage');
+Route::post('/login', 'AuthController@login');
+Route::get('/logout', 'AuthController@logout');
+
+// BUYER
+Route::get('/checkout', 'CheckoutController@index');
+
+// SELLER
+Route::get('/seller/dashboard', 'SellerController@index');
+Route::get('/seller/products', 'SellerController@products');
+
+// ADMIN
+Route::get('/admin/dashboard', 'AdminController@index');
