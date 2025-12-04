@@ -20,10 +20,12 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          server-dir: /htdocs/       # InfinityFree usually expects /htdocs/
+          server-dir: /htdocs/
           local-dir: ./
           exclude: |
             **/.git*
             **/.github*
             **/node_modules*
             **/*.md
+            app/config/config.php
+            app/helpers/db.php
