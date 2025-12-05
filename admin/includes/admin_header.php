@@ -7,7 +7,6 @@ if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +19,7 @@ if (!isset($_SESSION['admin_id'])) {
 
 <style>
     .admin-wrapper { display: flex; }
+
     .sidebar {
         width: 250px;
         height: 100vh;
@@ -27,42 +27,19 @@ if (!isset($_SESSION['admin_id'])) {
         color: #fff;
         padding: 20px;
         position: fixed;
+        top: 0;
+        left: 0;
     }
-    .sidebar h2 {
-        margin-bottom: 30px;
-        text-align: center;
-    }
-    .sidebar a {
-        display: block;
-        padding: 12px;
-        margin-bottom: 10px;
-        color: #fff;
-        border-radius: 5px;
-    }
-    .sidebar a:hover {
-        background: #007bff;
-    }
-    .admin-content {
+
+    .admin-content, .content-wrapper {
         margin-left: 270px;
         padding: 30px;
-        width: 100%;
+        width: calc(100% - 270px);
     }
-    .topbar {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 25px;
-    }
-    .card {
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
 </style>
 
 </head>
+
 <body>
 
 <div class="admin-wrapper">

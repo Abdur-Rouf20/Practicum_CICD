@@ -1,44 +1,41 @@
 <?php
 session_start();
-require_once "../config/db.php";  // Your database connection file
+require_once __DIR__ . "\..\app\config\config.php";  // BASE_URL defined here
+$pdo = require __DIR__ . "\..\app\helpers\db.php";    // PDO connection
 
 $message = "";
 
 // If form submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM admin_users WHERE email = '$email' LIMIT 1";
-    $result = mysqli_query($conn, $sql);
+    // Fetch admin user
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND role = 'admin' LIMIT 1");
+    $stmt->execute([$email]);
+    $admin = $stmt->fetch();
 
-    if (mysqli_num_rows($result) === 1) {
-        $admin = mysqli_fetch_assoc($result);
+    if ($admin && password_verify($password, $admin['password_hash'])) {
+        // Set session values
+        $_SESSION['admin_id'] = $admin['id'];
+        $_SESSION['admin_name'] = $admin['name'];
+        $_SESSION['admin_email'] = $admin['email'];
 
-        // Verify hashed password
-        if (password_verify($password, $admin['password'])) {
-
-            // set session values
-            $_SESSION['admin_id'] = $admin['id'];
-            $_SESSION['admin_name'] = $admin['name'];
-            $_SESSION['admin_email'] = $admin['email'];
-
-            header("Location: dashboard.php");
-            exit;
-        } else {
-            $message = "Invalid password!";
-        }
+        // Redirect to dashboard
+        header("Location: " . BASE_URL . "/admin/dashboard.php");
+        exit;
     } else {
-        $message = "Admin not found!";
+        $message = "Invalid email or password!";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/main.css">
 
     <style>
         body {
@@ -87,7 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 5px;
         }
     </style>
-
 </head>
 <body>
 
@@ -95,14 +91,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Admin Login</h2>
 
     <?php if ($message != ""): ?>
-        <div class="error"><?php echo $message; ?></div>
+        <div class="error"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
 
     <form method="POST">
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" name="email" required placeholder="admin@admin.com">
+            <input type="email" name="email" required placeholder="admin@example.com">
         </div>
 
         <div class="form-group">
@@ -110,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="password" required placeholder="*******">
         </div>
 
-        <button class="btn-login">Login</button>
+        <button type="submit" class="btn-login">Login</button>
 
     </form>
 </div>
